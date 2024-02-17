@@ -1,11 +1,13 @@
-import { styled } from '..';
+import { styled } from "@/styles/stitches.config";
+
+
 
 export const Container = styled('div', {
   width: '100%',
   margin: '0 auto',
   maxWidth: 1024,
   height: '100vh',
-  padding: '1.5rem'
+  padding: '1.5rem 1.5rem 4.5rem',
 })
 
 export const Header = styled('header', {
@@ -33,17 +35,10 @@ export const ProfileAndNewAd = styled('div', {
         fontWeight: 700,
       }
     },
-
-    img: {
-      objectFit: 'contain',
-      outline: '2px solid $blueLight',
-      outlineOffset: -2,
-      borderRadius: '9999px',
-    },
   }
 })
 
-export const UserAds = styled('div', {
+export const UserAnnouncements = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
@@ -55,7 +50,7 @@ export const UserAds = styled('div', {
   },
 })
 
-export const ShowUserAds = styled('div', {
+export const ShowUserAnnouncements = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
@@ -85,7 +80,7 @@ export const ShowUserAds = styled('div', {
     }
   },
 
-  button: {
+  [`& > a`]: {
     all: 'unset',
     display: 'flex',
     alignItems: 'center',
@@ -155,4 +150,67 @@ export const InputSearch = styled('div', {
       borderLeft: '1px solid $gray400',
     },
   }
+})
+
+export const Products = styled('div', {
+  marginTop: '1.5rem',
+  paddingBottom: '1.5rem',
+  width: '100%',
+  display: 'grid',
+  gridTemplateColumns: 'repeat(2, 1fr)',
+  gridGap: '1.25rem',
+  gridRow: '1.5rem',
+})
+
+export const Product = styled('div', {
+  position: 'relative',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.25rem',
+})
+
+export const ProductCover = styled('img', {
+  borderRadius: 6,
+})
+
+export const ProductCondition = styled('div', {
+  position: 'absolute',
+  right: 4, top: 4,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  padding: '2px 8px',
+  userSelect: 'none',
+  color: '#FFFFFF',
+  fontSize: '0.625rem',
+  fontWeight: 'bold',
+  lineHeight: '$default',
+  borderRadius: '9999px',
+
+  variants: {
+    condition: {
+      used: {
+        backgroundColor: '$gray600',
+      },
+      new: {
+        backgroundColor: '$blue',
+      }
+    }
+  }
+
+})
+
+export const ProductInfo = styled('div', {
+  p: {
+    color: '$gray600',
+    fontSize: '$sm',
+    lineHeight: '$default'
+  },
+  strong: {
+    color: '$gray900',
+    lineHeight: '$default',
+    span: {
+      fontSize: '$sm',
+    }
+  },
 })

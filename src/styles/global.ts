@@ -1,4 +1,5 @@
-import { globalCss } from ".";
+import { globalCss } from "./stitches.config";
+
 
 
 export const globalStyles = globalCss({
@@ -15,8 +16,7 @@ export const globalStyles = globalCss({
 
   body: {
     backgroundColor: '$gray200',
-    color: '#313131',
-    padding: 0,
+    color: '$gray600',
     '-webkit-font-smoothing': 'antialiased',
   },
 

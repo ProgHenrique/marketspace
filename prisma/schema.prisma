@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String   @id @default(uuid())
+  name       String
+  email      String   @unique
+  phone      String   @unique
+  password   String
+  avatar_url String?
+  created_at DateTime @default(now())
+
+  announcements Announcement[]
+
+  @@map("user")
+}
+
+model Announcement {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  isNew       Boolean
+  price       Int
+  available   Boolean  @default(true)
+  created_at  DateTime @default(now())
+
+  user               User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId             String
+  AnnouncementImages AnnouncementImages[]
+
+  @@map("announcement")
+}
+
+model AnnouncementImages {
+  id             String       @id @default(uuid())
+  image_url      String
+  announcement   Announcement @relation(fields: [announcementId], references: [id], onDelete: Cascade)
+  announcementId String
+
+  @@map("announcementImage")
+}
+
+model ChatRoom {
+  id         String    @id @default(uuid())
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  messages   Message[]
+
+  @@map("chatroom")
+}
+
+model Message {
+  id         String   @id @default(uuid())
+  text       String
+  senderUser String
+  chatRoom   ChatRoom @relation(fields: [chatRoomId], references: [id], onDelete: Cascade)
+  chatRoomId String
+  created_at DateTime @default(now())
+
+  @@map("message")
+}
